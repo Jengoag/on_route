@@ -32,10 +32,18 @@ def get_addresses():
 def store_addresses():
         initial = request.form.get("initial")
 
+
+## XY_ADRESSES_DB
+
+@app.route("/xy_adresses_db")
+def xy_parques():
     query = f"""
-        SET INITIAL
-        FROM routes_created
+        SELECT name_area, latitude, longitude
+        FROM parques
         ;
     """
-        print(initial)
-        return ""
+    result = db.execute(query).fetchall()
+
+    return json_response(result)
+
+ 
